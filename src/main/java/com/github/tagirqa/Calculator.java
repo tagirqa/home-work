@@ -26,14 +26,14 @@ public class Calculator {
     }
 
     /*
-    Возвращает a в степени от b
+    Возвращает a в степени b
      */
     public static double getExponentiation(double a, int b) {
         return Math.pow(a, b);
     }
 
     /*
-    Возвращает модуль от a
+    Возвращает модуль a
      */
     public static double getAbs(double a) {
         return Math.abs(a);
