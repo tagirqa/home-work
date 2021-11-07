@@ -18,22 +18,22 @@ public class Calculator {
         return a / b;
     }
 
-    /*
-    Возвращает процент a от b
+    /**
+     * Возвращает процент a от b
      */
     public static double getPercent(double a, double b) {
         return b / 100 * a;
     }
 
-    /*
-    Возвращает a в степени b
+    /**
+     * Возвращает a в степени b
      */
     public static double getExponentiation(double a, int b) {
         return Math.pow(a, b);
     }
 
-    /*
-    Возвращает модуль a
+    /**
+     * Возвращает модуль a
      */
     public static double getAbs(double a) {
         return Math.abs(a);
