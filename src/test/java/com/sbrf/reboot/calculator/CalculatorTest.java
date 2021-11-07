@@ -31,4 +31,19 @@ class CalculatorTest {
     void classHasSevenMethods(){
         assertEquals(7,Calculator.class.getMethods().length-Object.class.getMethods().length);
     }
+
+    @Test
+    void getPercent() {
+        assertEquals(20, Calculator.getPercent(100, 20));
+    }
+
+    @Test
+    void getExponentiation() {
+        assertEquals(27, Calculator.getExponentiation(3, 3));
+    }
+
+    @Test
+    void getAbs() {
+        assertEquals(5, Calculator.getAbs(-5));
+    }
 }
