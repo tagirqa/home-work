@@ -6,7 +6,6 @@ import com.github.tagirqa.AccountService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.HashSet;
@@ -16,22 +15,22 @@ import static org.mockito.Mockito.when;
 
 class AccountServiceTest {
 
-    @Mock
     AccountRepository accountRepository;
-
     AccountService accountService;
+    Set<Account> accounts;
 
     @BeforeEach
     void setUp() {
         accountRepository = Mockito.mock(AccountRepository.class);
 
         accountService = new AccountService(accountRepository);
+
+        accounts = new HashSet();
     }
 
     @Test
     void bookExist() {
         Account account = new Account("ACC1234NUM");
-        Set<Account> accounts = new HashSet();
         accounts.add(account);
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
@@ -41,7 +40,6 @@ class AccountServiceTest {
 
     @Test
     void bookNotExist() {
-        Set<Account> accounts = new HashSet();
         accounts.add(new Account("ACC1234NUM"));
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
@@ -51,7 +49,6 @@ class AccountServiceTest {
 
     @Test
     void countAccountInRepository() {
-        Set<Account> accounts = new HashSet();
         accounts.add(new Account("AAA777"));
         accounts.add(new Account("FFF111"));
         accounts.add(new Account("CCC555"));
