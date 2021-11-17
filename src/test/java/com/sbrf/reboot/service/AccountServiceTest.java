@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,40 +30,21 @@ class AccountServiceTest {
     }
 
     @Test
-    void bookExist() {
+    void bookExist() throws FileNotFoundException {
         Account account = new Account("ACC1234NUM");
         accounts.add(account);
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
 
-        assertTrue(accountService.isAccountExist(1L, account));
+        Assertions.assertTrue(accountService.isAccountExist(1L, account));
     }
 
     @Test
-    void bookNotExist() {
+    void bookNotExist() throws FileNotFoundException {
         accounts.add(new Account("ACC1234NUM"));
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
 
-        assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
-    }
-
-    @Test
-    void countAccountInRepository() {
-        accounts.add(new Account("AAA777"));
-        accounts.add(new Account("FFF111"));
-        accounts.add(new Account("CCC555"));
-
-        when(accountRepository.getSizeAllAccounts()).thenReturn(3L);
-
-        Assertions.assertEquals(accountRepository.getSizeAllAccounts(), accounts.size());
-    }
-
-    private void assertTrue(boolean accountExist) {
-        Assertions.assertTrue(accountExist);
-    }
-
-    private void assertFalse(boolean acc456NUM) {
-        Assertions.assertFalse(acc456NUM);
+        Assertions.assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
     }
 }
