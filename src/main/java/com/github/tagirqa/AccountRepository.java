@@ -1,19 +1,13 @@
 package com.github.tagirqa;
 
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class AccountRepository implements AccountInterface {
+public interface AccountRepository {
 
-    @Override
-    public Set<Account> getAllAccountsByClientId(long l) {
+    public default Set<Account> getAllAccountsByClientId(long l) throws FileNotFoundException {
         return new HashSet<>();
     }
-
-    @Override
-    public Long getSizeAllAccounts() {
-        return null;
-    }
-
 }
