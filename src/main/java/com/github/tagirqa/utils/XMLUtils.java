@@ -1,7 +1,9 @@
-package com.github.tagirqa;
+package com.github.tagirqa.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.github.tagirqa.Request;
+import com.github.tagirqa.Response;
 
 public class XMLUtils {
 

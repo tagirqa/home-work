@@ -1,7 +1,9 @@
-package com.github.tagirqa;
+package com.github.tagirqa.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tagirqa.Request;
+import com.github.tagirqa.Response;
 
 import java.io.IOException;
 

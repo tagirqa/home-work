@@ -1,7 +1,7 @@
 package com.sbrf.reboot.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.tagirqa.JSONUtils;
+import com.github.tagirqa.utils.JSONUtils;
 import com.github.tagirqa.Request;
 import com.github.tagirqa.Response;
 import lombok.SneakyThrows;

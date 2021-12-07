@@ -3,7 +3,7 @@ package com.sbrf.reboot.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.tagirqa.Request;
 import com.github.tagirqa.Response;
-import com.github.tagirqa.XMLUtils;
+import com.github.tagirqa.utils.XMLUtils;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
