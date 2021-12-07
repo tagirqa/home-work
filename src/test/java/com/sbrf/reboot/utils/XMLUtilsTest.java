@@ -27,7 +27,7 @@ class XMLUtilsTest {
     @Test
     void XMLtoRequest() throws JsonProcessingException {
         Request request = XMLUtils.XMLtoRequest("<Request><atmNumber>ATM12345</atmNumber></Request>");
-//        Assertions.assertEquals("ATM12345", request.getAtmNumber());
+        Assertions.assertEquals("ATM12345", request.getAtmNumber());
     }
 
     @Test
