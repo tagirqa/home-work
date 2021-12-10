@@ -51,9 +51,8 @@ class AccountServiceTest {
         Assertions.assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
     }
 
-    @SneakyThrows
     @Test
-    void getMaxAccountBalance() {
+    void getMaxAccountBalance() throws FileNotFoundException {
         Account accountWithMaxBalance = Account.builder().clientId(1L).id(4L).balance(new BigDecimal(150000)).build();
         Set<Account> accounts = new HashSet() {{
             add(Account.builder().clientId(1L).id(1L).balance(BigDecimal.TEN).build());
@@ -68,35 +67,34 @@ class AccountServiceTest {
     }
 
 
-    @SneakyThrows
-    @Test
-    void getAllAccountsByDateMoreThen() {
-        Account account1 = Account.builder().clientId(1L)
-                .createDate(LocalDate.now().minusDays(2))
-                .build();
-        Account account2 = Account.builder().clientId(1L)
-                .createDate(LocalDate.now().minusDays(3))
-                .build();
-        Account account3 = Account.builder().clientId(1L)
-                .createDate(LocalDate.now().minusDays(1))
-                .build();
-        Account account4 = Account.builder().clientId(1L)
-                .createDate(LocalDate.now().minusDays(7))
-                .build();
-
-        Set<Account> accounts = new HashSet() {{
-            add(account1);
-            add(account2);
-            add(account3);
-            add(account4);
-        }};
-
-        when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
-
-        Set allAccountsByDateMoreThen = accountService.getAllAccountsByDateMoreThen(1L, LocalDate.now().minusDays(2));
-
-        assertEquals(2, allAccountsByDateMoreThen.size());
-        assertTrue(allAccountsByDateMoreThen.contains(account3));
-    }
+//    @Test
+//    void getAllAccountsByDateMoreThen() {
+//        Account account1 = Account.builder().clientId(1L)
+//                .createDate(LocalDate.now().minusDays(2))
+//                .build();
+//        Account account2 = Account.builder().clientId(1L)
+//                .createDate(LocalDate.now().minusDays(3))
+//                .build();
+//        Account account3 = Account.builder().clientId(1L)
+//                .createDate(LocalDate.now().minusDays(1))
+//                .build();
+//        Account account4 = Account.builder().clientId(1L)
+//                .createDate(LocalDate.now().minusDays(7))
+//                .build();
+//
+//        Set<Account> accounts = new HashSet() {{
+//            add(account1);
+//            add(account2);
+//            add(account3);
+//            add(account4);
+//        }};
+//
+//        when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
+//
+//        Set allAccountsByDateMoreThen = accountService.getAllAccountsByDateMoreThen(1L, LocalDate.now().minusDays(2));
+//
+//        assertEquals(2, allAccountsByDateMoreThen.size());
+//        assertTrue(allAccountsByDateMoreThen.contains(account3));
+//    }
 
 }
