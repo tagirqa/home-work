@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -30,5 +27,19 @@ public class AccountService {
                 .stream()
                 .filter(d -> d.getCreateDate().isAfter(minusDays) || d.getCreateDate().isEqual(minusDays))
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Сортирует по дате создания начиная от самого свежего
+     * Если дата создания одинаковая, тогда по убыванию баланса
+     *
+     * @throws FileNotFoundException
+     */
+    public List<Account> getSortedDateAndBalance(long l) throws FileNotFoundException {
+        return new ArrayList<>(accountRepository.getAllAccountsByClientId(l)).stream()
+                .sorted(Comparator.comparing(Account::getCreateDate)
+                        .thenComparing(Account::getBalance)
+                        .reversed())
+                .collect(Collectors.toList());
     }
 }

@@ -9,9 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -97,4 +100,34 @@ class AccountServiceTest {
         assertTrue(allAccountsByDateMoreThen.contains(account3));
     }
 
+
+    @Test
+    void getSortedDateAndBalance() throws FileNotFoundException {
+
+        List<Account> accountsExpected = new ArrayList<Account>() {{
+            add(Account.builder().id(1L).balance(BigDecimal.TEN).createDate(LocalDate.now().plusDays(1)).build());
+            add(Account.builder().id(1L).balance(BigDecimal.TEN).createDate(LocalDate.now()).build());
+            add(Account.builder().id(1L).balance(BigDecimal.ZERO).createDate(LocalDate.now()).build());
+            add(Account.builder().id(1L).balance(new BigDecimal(200)).createDate(LocalDate.now().minusDays(2)).build());
+        }};
+
+        Set<Account> accounts = new HashSet<Account>() {{
+            add(Account.builder().id(1L).balance(BigDecimal.ZERO).createDate(LocalDate.now()).build());
+            add(Account.builder().id(1L).balance(BigDecimal.TEN).createDate(LocalDate.now()).build());
+            add(Account.builder().id(1L).balance(new BigDecimal(200)).createDate(LocalDate.now().minusDays(2)).build());
+            add(Account.builder().id(1L).balance(BigDecimal.TEN).createDate(LocalDate.now().plusDays(1)).build());
+        }};
+
+        when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
+
+        List<Account> accountsActual = accountService.getSortedDateAndBalance(1L);
+
+        assertEquals(accountsExpected.size(), accountsActual.size());
+
+        for (int i = 0; i < accountsExpected.size(); i++) {
+            Assertions.assertEquals(accountsExpected.get(i).getCreateDate(), accountsActual.get(i).getCreateDate());
+            Assertions.assertEquals(accountsExpected.get(i).getBalance(), accountsActual.get(i).getBalance());
+        }
+
+    }
 }
