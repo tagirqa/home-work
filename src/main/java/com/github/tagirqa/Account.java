@@ -15,6 +15,7 @@ public class Account {
     private String number;
     private LocalDate createDate;
     private BigDecimal balance;
+    private Long clientId;
 
     public Account(String number) {
         this.number = number;
