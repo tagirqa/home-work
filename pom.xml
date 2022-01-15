@@ -33,6 +33,7 @@
 
         <jackson-databind.version>2.12.4</jackson-databind.version>
         <jackson-dataformat-xml.version>2.11.1</jackson-dataformat-xml.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
@@ -67,6 +68,15 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson-dataformat-xml.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
