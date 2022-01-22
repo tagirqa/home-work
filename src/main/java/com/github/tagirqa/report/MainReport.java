@@ -29,7 +29,7 @@ public class MainReport {
             }
             return sumBalance;
         });
-        return future.get();
+        return future.join();
     }
 
     public int getTotalsWithReact(Stream<Customer> customerStream) {
