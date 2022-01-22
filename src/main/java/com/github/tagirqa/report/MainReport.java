@@ -15,7 +15,7 @@ public class MainReport {
 
     public int getTotalsWithCompletableFuture(Stream<Customer> customerStream) throws ExecutionException, InterruptedException {
 
-        CompletableFuture<Integer> future = CompletableFuture.completedFuture("Async task completed").thenApplyAsync(s -> {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
             int sumBalance = 0;
             Set<Customer> customerSet = customerStream
                     .filter(e -> e.getAge() >= 18 && e.getAge() <= 30)
@@ -27,8 +27,6 @@ public class MainReport {
                         account.getCreateDate().isBefore(LocalDate.of(2021, 8, 1)) &&
                         "RUB".equals(account.getCurrency())).mapToInt(v -> v.getBalance().intValue()).sum();
             }
-
-
             return sumBalance;
         });
         return future.get();
