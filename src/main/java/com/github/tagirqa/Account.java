@@ -16,6 +16,7 @@ public class Account {
     private LocalDate createDate;
     private BigDecimal balance;
     private Long clientId;
+    private String currency;
 
     public Account(String number) {
         this.number = number;
@@ -24,5 +25,11 @@ public class Account {
     public Account(Long id, String number) {
         this.id = id;
         this.number = number;
+    }
+
+    public Account(BigDecimal balance, String currency, LocalDate createDate) {
+        this.createDate = createDate;
+        this.balance = balance;
+        this.currency = currency;
     }
 }
