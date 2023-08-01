@@ -30,12 +30,6 @@ class CassetteTest {
         }
     }
 
-    class FiveThousand extends Banknote {
-        public FiveThousand() {
-            setCount(5000);
-            setCurrency("RUB");
-        }
-    }
 
     @Test
     void getCountBanknotes() {
